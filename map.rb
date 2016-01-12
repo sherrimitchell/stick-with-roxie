@@ -12,24 +12,19 @@ require 'stick-with-roxie/game_over'
 
 class Map
 
-	@@scenes = {
-    'roxies_yard' => RoxiesYard.new(),
-    'neighbors_yard' => NeighborsYard.new(),
-    'grandma' => Grandma.new(),
-    'dogwalker' => DogWalker.new(),
-    'park' => Park.new(),
-    'game_over' => GameOver.new(),
-  }
-
-
   def initialize(start_scene)
     @start_scene = start_scene
+
+  end
+
+  def start_scene
+    @start_scene = @@scenes.to_a
   end
 
 
   def next_scene(scene_name)
-    val = @@scenes[scene_name]
-    val
+    @next_scene = @@scenes[scene_name]
+    @next_scene
   end
 
   def opening_scene()

@@ -22,26 +22,42 @@ class Scene
 
 	def get_user_task
 		tasks = ["Turn Around", "Sing a Song", "Cell Phone", "Freeze Grandma", "Jog Away"]
-		@user_task = tasks.sample
+		@user_task = tasks
+    puts "You have chosen to"
+    puts @user_task[rand(0..(@user_task.length - 1))]
   end
 
   def user_key
     user_key = rand(1..5)
   end
   
-  def user_move(user_task, option)
-    self.get_user_task
-    puts "You have chosen to #{@user_task}."
-    
+  def get_user_guess(option, user_key)    
+    self.get_user_option
+    self.user_key
     guesses = 0
-    
-    while self.get_user_option != user_key && guesses < 3
+
+    while option != user_key && guesses < 3
       puts "Nope. Try again."
       guesses += 1
       self.get_user_option
     end
+  end
 
-    if self.get_user_option = user_key
+  def user_move
+    self.get_user_option
+    self.user_key
+    user_move = self.next_scene
+
+    if option = user_key
+      user_move
+    else
+      'game_over'
+    end
+  end
+    
+
+    
+    
       if @scene = neighbor
         puts "\n"
         puts "Wise decision. He can't resist a good serenade."
